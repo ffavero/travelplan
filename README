@@ -1,0 +1,10 @@
+Basic app (proof of concept) based on Google Maps API.
+
+todo list:
+
+*Retrive default location by browser
+*Convert insert Location in geograph. coordinare (eg: http://universimmedia.pagesperso-orange.fr/geo/loc.htm)
+*Insert Start (several stops in the middle might be allowed) and End travel in a proper 
+  Database (GQL work, might be usefull a satic map with coords to help to search faster?)
+
+The app would be implemented in Python and Javascript. 
