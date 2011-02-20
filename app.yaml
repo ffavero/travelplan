@@ -4,6 +4,18 @@ runtime: python
 api_version: 1
 
 handlers:
-- url: /.*
-  script: travel.py
 
+- url: /
+  static_files: index.html
+  upload: index.html
+
+- url: /css
+  static_dir: css
+
+- url: /js
+  static_dir: js
+
+skip_files:
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?\..*
+- ^app\.yaml$
