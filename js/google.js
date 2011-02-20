@@ -84,4 +84,9 @@ function codeAddress() {
   });
 }
 
+function setLoc() {
+  var lat = map.getCenter().lat();
+  var lng = map.getCenter().lng();
+  alert("Lat: " + lat + " Long: " + lng );
+}
 
