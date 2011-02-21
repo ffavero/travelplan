@@ -133,5 +133,8 @@ function codeAddress() {
 
 function setLoc() {
   alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng() + " Address: " + document.getElementById("address").value );
+  if (document.getElementById('directions').className = 'start') {
+    document.getElementById('directions').className = 'end';
+  };
 }
 

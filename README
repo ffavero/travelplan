@@ -5,6 +5,9 @@ what is doing:
 *Convert insert Location in geograph coordinare
 
 todo list:
+*Draw an horizontal  bar resuming the travel details...start (a ball in the bar), distance (lenght 
+ annotated as mesure of the y axis), and destination (second ball in the bar) (also smallest points 
+ in between?). suggestions using jquery.flot 
 *retrive JSON file with info given the Lat and Lng (or set the point and retrive the JSON of the total...
  eg: http://maps.googleapis.com/maps/api/directions/json?origin=Toledo&destination=Madrid&sensor=true 
      http://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&sensor=true ) 

@@ -27,7 +27,6 @@ html {
 }
 
 #directions {
- float:left;
  height:250px;
  padding:10px;
  background:#fff8dc;
@@ -36,4 +35,12 @@ html {
 #map_canvas {
  width: 230px;
  height: 230px;
+}
+
+#directions.start {
+ float:left;
+}
+
+#directions.end {
+ float:right;
 }
