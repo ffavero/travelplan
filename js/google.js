@@ -11,7 +11,6 @@ var rendererOptions = {
 var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);;
 var directionsService = new google.maps.DirectionsService();
 var markerLatLong;
-var markerAddrs;
 
 function geocodePosition(pos) {
   geocoder.geocode({
@@ -56,7 +55,6 @@ function initialize() {
       updateMarkerPosition(initialLocation);
       geocodePosition(initialLocation);
       google.maps.event.addListener(marker, 'dragend', function() {
-        //updateMarkerStatus('Drag ended');
         geocodePosition(marker.getPosition());
       });
     }, function() {
@@ -79,7 +77,6 @@ function initialize() {
       updateMarkerPosition(initialLocation);
       geocodePosition(initialLocation);
       google.maps.event.addListener(marker, 'dragend', function() {
-        //updateMarkerStatus('Drag ended');
         geocodePosition(marker.getPosition());
       });
     }, function() {
@@ -111,6 +108,8 @@ function codeAddress() {
         zoom: 10,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
+      // There might be a better way to remove just the Marker without redraw the map...
+      // but I can't find it right now...
       map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
       map.setCenter(results[0].geometry.location);
       var marker = new google.maps.Marker({
@@ -123,7 +122,6 @@ function codeAddress() {
       updateMarkerPosition(results[0].geometry.location);
       geocodePosition(results[0].geometry.location);
       google.maps.event.addListener(marker, 'dragend', function() {
-        //updateMarkerStatus('Drag ended');
         geocodePosition(marker.getPosition());
       });
       
