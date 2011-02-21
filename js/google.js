@@ -10,15 +10,15 @@ var rendererOptions = {
 };
 var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);;
 var directionsService = new google.maps.DirectionsService();
+var markerLatLong;
   
 function initialize() {
   geocoder = new google.maps.Geocoder();
   var myOptions = {
-    zoom: 6,
+    zoom: 10,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  
   // Try W3C Geolocation method (Preferred)
   if(navigator.geolocation) {
     browserSupportFlag = true;
@@ -29,6 +29,13 @@ function initialize() {
 //      infowindow.setContent(contentString);
 //      infowindow.setPosition(initialLocation);
 //      infowindow.open(map);
+      var marker = new google.maps.Marker({
+        map: map,
+        draggable:true,
+        animation: google.maps.Animation.DROP,
+        position: initialLocation,
+      });
+      markerLatLong = marker.getPosition();
     }, function() {
       handleNoGeolocation(browserSupportFlag);
     });
@@ -43,6 +50,13 @@ function initialize() {
 //      infowindow.setContent(contentString);
 //      infowindow.setPosition(initialLocation);
 //      infowindow.open(map);
+      var marker = new google.maps.Marker({
+        map: map,
+        draggable:true,
+        animation: google.maps.Animation.DROP,
+        position: initialLocation,
+      });
+      markerLatLong = marker.getPosition();
     }, function() {
       handleNoGeolocation(browserSupportFlag);
     });
@@ -67,10 +81,40 @@ function handleNoGeolocation(errorFlag) {
 //  infowindow.open(map);
 }
 
+function geocodePosition(pos) {
+  geocoder.geocode({
+    latLng: pos
+  }, function(responses) {
+    if (responses && responses.length > 0) {
+      updateMarkerAddress(responses[0].formatted_address);
+    } else {
+      updateMarkerAddress('Cannot determine address at this location.');
+    }
+  });
+}
+
+function updateMarkerStatus(str) {
+  document.getElementById('markerStatus').innerHTML = str;
+}
+
+function updateMarkerPosition(latLng) {
+  markerLatLong= latLng;
+}
+
+function updateMarkerAddress(str) {
+  var addressInput = document.getElementById('address').innerHTML;
+}
+
+
 function codeAddress() {
   var address = document.getElementById("address").value;
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
+      var myOptions = {
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
       map.setCenter(results[0].geometry.location);
       var marker = new google.maps.Marker({
           map: map,
@@ -78,15 +122,32 @@ function codeAddress() {
           animation: google.maps.Animation.DROP,
           position: results[0].geometry.location
       });
+      // Update current position info.
+      updateMarkerPosition(results[0].geometry.location);
+      geocodePosition(results[0].geometry.location);
+      // Add dragging event listeners.
+      google.maps.event.addListener(marker, 'dragstart', function() {
+        updateMarkerAddress('Dragging...');
+      });
+      google.maps.event.addListener(marker, 'drag', function() {
+        updateMarkerStatus('Dragging...');
+        updateMarkerPosition(marker.getPosition());
+      });
+      google.maps.event.addListener(marker, 'dragend', function() {
+        updateMarkerStatus('Drag ended');
+        geocodePosition(marker.getPosition());
+      });
+      
+      markerLatLong = marker.getPosition();
     } else {
       alert("Geocode was not successful for the following reason: " + status);
     }
   });
 }
 
+
+
 function setLoc() {
-  var lat = map.getCenter().lat();
-  var lng = map.getCenter().lng();
-  alert("Lat: " + lat + " Long: " + lng );
+  alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng());
 }
 
