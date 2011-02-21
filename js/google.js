@@ -11,6 +11,27 @@ var rendererOptions = {
 var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);;
 var directionsService = new google.maps.DirectionsService();
 var markerLatLong;
+var markerAddrs;
+
+function geocodePosition(pos) {
+  geocoder.geocode({
+    latLng: pos
+  }, function(responses) {
+    if (responses && responses.length > 0) {
+      updateMarkerAddress(responses[0].formatted_address);
+    } else {
+      updateMarkerAddress('Cannot determine address at this location.');
+    }
+  });
+}
+
+function updateMarkerPosition(latLng) {
+  markerLatLong= latLng;
+}
+
+function updateMarkerAddress(str) {
+  document.getElementById('address').value = str;
+}
   
 function initialize() {
   geocoder = new google.maps.Geocoder();
@@ -24,18 +45,20 @@ function initialize() {
     browserSupportFlag = true;
     navigator.geolocation.getCurrentPosition(function(position) {
       initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-//      contentString = "Location found using W3C standard";
       map.setCenter(initialLocation);
-//      infowindow.setContent(contentString);
-//      infowindow.setPosition(initialLocation);
-//      infowindow.open(map);
       var marker = new google.maps.Marker({
         map: map,
         draggable:true,
         animation: google.maps.Animation.DROP,
         position: initialLocation,
       });
-      markerLatLong = marker.getPosition();
+      // Update current position info.
+      updateMarkerPosition(initialLocation);
+      geocodePosition(initialLocation);
+      google.maps.event.addListener(marker, 'dragend', function() {
+        //updateMarkerStatus('Drag ended');
+        geocodePosition(marker.getPosition());
+      });
     }, function() {
       handleNoGeolocation(browserSupportFlag);
     });
@@ -45,18 +68,20 @@ function initialize() {
     var geo = google.gears.factory.create('beta.geolocation');
     geo.getCurrentPosition(function(position) {
       initialLocation = new google.maps.LatLng(position.latitude,position.longitude);
-//      contentString = "Location found using Google Gears";
       map.setCenter(initialLocation);
-//      infowindow.setContent(contentString);
-//      infowindow.setPosition(initialLocation);
-//      infowindow.open(map);
       var marker = new google.maps.Marker({
         map: map,
         draggable:true,
         animation: google.maps.Animation.DROP,
         position: initialLocation,
       });
-      markerLatLong = marker.getPosition();
+      // Update current position info.
+      updateMarkerPosition(initialLocation);
+      geocodePosition(initialLocation);
+      google.maps.event.addListener(marker, 'dragend', function() {
+        //updateMarkerStatus('Drag ended');
+        geocodePosition(marker.getPosition());
+      });
     }, function() {
       handleNoGeolocation(browserSupportFlag);
     });
@@ -76,35 +101,7 @@ function handleNoGeolocation(errorFlag) {
     contentString = "Error: Your browser doesn't support geolocation. Are you in Siberia?";
   }
   map.setCenter(initialLocation);
-//  infowindow.setContent(contentString);
-//  infowindow.setPosition(initialLocation);
-//  infowindow.open(map);
 }
-
-function geocodePosition(pos) {
-  geocoder.geocode({
-    latLng: pos
-  }, function(responses) {
-    if (responses && responses.length > 0) {
-      updateMarkerAddress(responses[0].formatted_address);
-    } else {
-      updateMarkerAddress('Cannot determine address at this location.');
-    }
-  });
-}
-
-function updateMarkerStatus(str) {
-  document.getElementById('markerStatus').innerHTML = str;
-}
-
-function updateMarkerPosition(latLng) {
-  markerLatLong= latLng;
-}
-
-function updateMarkerAddress(str) {
-  var addressInput = document.getElementById('address').innerHTML;
-}
-
 
 function codeAddress() {
   var address = document.getElementById("address").value;
@@ -125,29 +122,18 @@ function codeAddress() {
       // Update current position info.
       updateMarkerPosition(results[0].geometry.location);
       geocodePosition(results[0].geometry.location);
-      // Add dragging event listeners.
-      google.maps.event.addListener(marker, 'dragstart', function() {
-        updateMarkerAddress('Dragging...');
-      });
-      google.maps.event.addListener(marker, 'drag', function() {
-        updateMarkerStatus('Dragging...');
-        updateMarkerPosition(marker.getPosition());
-      });
       google.maps.event.addListener(marker, 'dragend', function() {
-        updateMarkerStatus('Drag ended');
+        //updateMarkerStatus('Drag ended');
         geocodePosition(marker.getPosition());
       });
       
-      markerLatLong = marker.getPosition();
     } else {
       alert("Geocode was not successful for the following reason: " + status);
     }
   });
 }
 
-
-
 function setLoc() {
-  alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng());
+  alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng() + " Address: " + document.getElementById("address").value );
 }
 
