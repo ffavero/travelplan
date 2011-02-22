@@ -132,9 +132,18 @@ function codeAddress() {
 }
 
 function setLoc() {
-  alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng() + " Address: " + document.getElementById("address").value );
+  alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng() + " Start Location: " + document.getElementById("address").value );
   if (document.getElementById('directions').className = 'start') {
     document.getElementById('directions').className = 'end';
   };
+  if (document.getElementById('setin').onclick = setLoc) {
+    document.getElementById('setin').onclick = setDest;
+  };  
 }
 
+function setDest() {
+  alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng() + " Destination: " + document.getElementById("address").value );
+  if (document.getElementById('directions').className = 'end') {
+    document.getElementById('directions').className = 'none';
+  };
+}

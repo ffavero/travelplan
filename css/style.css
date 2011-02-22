@@ -44,3 +44,8 @@ html {
 #directions.end {
  float:right;
 }
+
+#directions.none {
+ float:right;
+ display: none;
+}
