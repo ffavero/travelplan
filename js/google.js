@@ -11,7 +11,8 @@ var rendererOptions = {
 var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);;
 var directionsService = new google.maps.DirectionsService();
 var markerLatLong;
-
+var startPoint;
+var endPoint;
 function geocodePosition(pos) {
   geocoder.geocode({
     latLng: pos
@@ -132,7 +133,8 @@ function codeAddress() {
 }
 
 function setLoc() {
-  alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng() + " Start Location: " + document.getElementById("address").value );
+  startPoint = document.getElementById("address").value;
+  alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng() + " Start Location: " + startPoint);
   if (document.getElementById('directions').className = 'start') {
     document.getElementById('directions').className = 'end';
   };
@@ -142,7 +144,9 @@ function setLoc() {
 }
 
 function setDest() {
-  alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng() + " Destination: " + document.getElementById("address").value );
+  endPoint = document.getElementById("address").value;
+  //alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng() + " Destination: " + endPoint);
+  alert("Start Location: " + startPoint + " Destination: " + endPoint);
   if (document.getElementById('directions').className = 'end') {
     document.getElementById('directions').className = 'none';
   };
