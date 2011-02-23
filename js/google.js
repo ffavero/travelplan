@@ -168,8 +168,11 @@ function setLoc() {
 function setDest() {
   endPoint = document.getElementById("address").value;
   //alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " Destination: " + endPoint);
-  alert(dictionary.startloc + startPoint + " " + dictionary.destloc  + endPoint);
+  alert(dictionary.startloc + startPoint + " " + dictionary.destloc  + endPoint + " " + document.getElementById('directions').className);
   if (document.getElementById('directions').className = 'end') {
-    document.getElementById('directions').className = 'none';
+    $('#directions').fadeOut("slow", 
+      function() {
+        document.getElementById('directions').className = 'none'
+    });  
   };
 }
