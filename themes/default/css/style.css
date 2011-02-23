@@ -1,0 +1,51 @@
+body,
+
+html {
+ margin:0;
+ padding:0;
+ color:#000;
+ background:#f5f5dc;
+}
+
+#wrap {
+ width:750px;
+ margin:0 auto;
+ background:#e0ffff;
+}
+
+#header {
+ margin-top: 10px;
+ padding:5px 10px;
+ background:#eeeee0;
+}
+
+#results {
+ float:left;
+ height:250px;
+ padding:10px;
+ background:#eeeee0;
+}
+
+#directions {
+ height:250px;
+ padding:10px;
+ background:#fff8dc;
+}
+
+#map_canvas {
+ width: 230px;
+ height: 230px;
+}
+
+#directions.start {
+ float:left;
+}
+
+#directions.end {
+ float:right;
+}
+
+#directions.none {
+ float:right;
+ display: none;
+}

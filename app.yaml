@@ -9,11 +9,14 @@ handlers:
   static_files: index.html
   upload: index.html
 
-- url: /css
-  static_dir: css
+- url: /themes
+  static_dir: themes
 
 - url: /js
   static_dir: js
+  
+- url: /langs
+  static_dir: langs  
 
 skip_files:
 - ^(.*/)?.*\.py[co]$
