@@ -146,10 +146,18 @@ function codeAddress() {
 }
 
 function setLoc() {
+ 
   startPoint = document.getElementById("address").value;
   alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " " + dictionary.startloc + startPoint);
-  if (document.getElementById('directions').className = 'start') {
-    document.getElementById('directions').className = 'end';
+  if (document.getElementById('directions').className = 'start') { 
+    $('#directions').fadeOut("slow", 
+      function() {
+        document.getElementById('directions').className = 'end'
+    });
+    $('#directions').fadeIn("slow", 
+      function() {
+        //Finished
+    });
   };
   if (document.getElementById('setin').onclick = setLoc) {
     document.getElementById('setin').onclick = setDest;
@@ -160,7 +168,7 @@ function setLoc() {
 function setDest() {
   endPoint = document.getElementById("address").value;
   //alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " Destination: " + endPoint);
-  alert(dictionary.setLoc + startPoint + " " + dictionary.destloc  + endPoint);
+  alert(dictionary.startloc + startPoint + " " + dictionary.destloc  + endPoint);
   if (document.getElementById('directions').className = 'end') {
     document.getElementById('directions').className = 'none';
   };
