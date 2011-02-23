@@ -30,27 +30,32 @@ html {
  background:#000; 
 }
 
+#redobutton {
+ display:inline;
+ margin:5px;
+ width: 40px;
+ height: 40px;
+}
+
 #uibar {
  width: 210px;
  height: 200px;
  background:#000;
+ margin-top: 0px;
 }
 
 #uibar.start {
  float:left;
- margin-top: 50px;
  margin-left:0px;
 }
 
 #uibar.end {
  float:left;
- margin-top: 50px;
  margin-left:270px;
 }
 
 #uibar.larger {
  float:left;
- margin-top: 50px;
  margin-left: 150px;
 }
 

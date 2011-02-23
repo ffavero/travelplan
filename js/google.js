@@ -32,23 +32,20 @@ function updateMarkerPosition(latLng) {
 function updateMarkerAddress(str) {
   document.getElementById('address').value = str;
 }
+
+function setDefaultUI() {
+  // setting up the button names:
+  document.getElementById('redobutton').onclick = initialize;
+  document.getElementById('redobutton').title = dictionary.refresh;
+  document.getElementById('directions').className = 'start';
+  document.getElementById('uibar').className = 'start';
+  document.getElementById('okaddress').value = dictionary.ok;
+  document.getElementById('setin').onclick = setLoc;
+  document.getElementById('setin').value = dictionary.setLoc;
+}
   
 function initialize() {
-  // setting up the button names:
-  if (!document.getElementById('directions').className) {
-    document.getElementById('directions').className = 'start';
-  };
-  if (!document.getElementById('uibar').className) {
-    document.getElementById('uibar').className = 'start';
-  };    
-  if (!document.getElementById('okaddress').value) {
-    document.getElementById('okaddress').value = dictionary.ok;
-  }
-  if (!document.getElementById('setin').onclick) {
-    document.getElementById('setin').onclick = setLoc;
-    document.getElementById('setin').value = dictionary.setLoc;
-  };
-  
+  setDefaultUI();
   //maps part:
   geocoder = new google.maps.Geocoder();
   var myOptions = {
@@ -151,21 +148,22 @@ function codeAddress() {
 function setLoc() {
   startPoint = document.getElementById("address").value;
   alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " " + dictionary.startloc + startPoint);
-  if (document.getElementById('directions').className = 'start') { 
+  if (document.getElementById('directions').className == 'start') { 
     $('#directions').fadeOut("slow", 
       function() {
         document.getElementById('directions').className = 'end';
         document.getElementById('uibar').className = 'end';
     });
     $('#directions').fadeIn("slow",
-
       function() {
         //Finished
     });
   };
-  if (document.getElementById('setin').onclick = setLoc) {
+  if (document.getElementById('setin').onclick == setLoc) {
     document.getElementById('setin').onclick = setDest;
     document.getElementById('setin').value = dictionary.setDest;
+    document.getElementById('redobutton').title = dictionary.resetLoc;
+    document.getElementById('redobutton').onclick = reDoit;    
   };  
 }
 
@@ -173,17 +171,40 @@ function setDest() {
   endPoint = document.getElementById("address").value;
   //alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " Destination: " + endPoint);
   alert(dictionary.startloc + startPoint + " " + dictionary.destloc  + endPoint);
-  if (document.getElementById('directions').className = 'end') {
+  if (document.getElementById('directions').className == 'end') {
     $('#directions').fadeOut("slow",
       function() {
-        document.getElementById('uibar').className = 'larger';
-        $('#uibar').animate({width:450}, "slow");
+        $('#uibar').animate({width:450, marginLeft: "150px"}, "slow");
         document.getElementById('directions').className = 'none';
+        document.getElementById('redobutton').title = dictionary.resetDest;
     });  
   };
 }
 
-function animateUibar () {
- $('#uibar').animate({"left": "+=90px"}, "slow");
+function reDoit () {
+  //reset The Start Location
+  if (document.getElementById('directions').className == 'end') {
+    $('#directions').fadeOut("slow", 
+      function() { 
+       setDefaultUI();
+       $('#uibar').css({marginLeft: ""});
+      });
+    $('#directions').fadeIn("slow",
+      function() {
+      // Done it
+      });     
+   };
+  //reset the destination
+  if (document.getElementById('directions').className == 'none') {
+    //$('#directions').fadeOut("slow");
+    $('#uibar').animate({width:210,marginLeft: "270px"}, "slow", 
+     function() {
+       $('#directions').fadeIn("slow");
+    });
+    document.getElementById('setin').onclick = setDest;
+    document.getElementById('directions').className = 'end';
+    document.getElementById('redobutton').title = dictionary.resetLoc;
+    //document.getElementById('uibar').className = 'end';    
+  };
 }
 
