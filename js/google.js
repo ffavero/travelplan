@@ -37,8 +37,10 @@ function initialize() {
   // setting up the button names:
   if (!document.getElementById('directions').className) {
     document.getElementById('directions').className = 'start';
-    document.getElementById('okaddress').value = dictionary.ok;
   };
+  if (!document.getElementById('okaddress').value) {
+    document.getElementById('okaddress').value = dictionary.ok;
+  }
   if (!document.getElementById('setin').onclick) {
     document.getElementById('setin').onclick = setLoc;
     document.getElementById('setin').value = dictionary.setLoc;
