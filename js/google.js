@@ -20,7 +20,7 @@ function geocodePosition(pos) {
     if (responses && responses.length > 0) {
       updateMarkerAddress(responses[0].formatted_address);
     } else {
-      updateMarkerAddress('Cannot determine address at this location.');
+      updateMarkerAddress(dictionary.errorgeoloc );
     }
   });
 }
@@ -34,6 +34,17 @@ function updateMarkerAddress(str) {
 }
   
 function initialize() {
+  // setting up the button names:
+  if (!document.getElementById('directions').className) {
+    document.getElementById('directions').className = 'start';
+    document.getElementById('okaddress').value = dictionary.ok;
+  };
+  if (!document.getElementById('setin').onclick) {
+    document.getElementById('setin').onclick = setLoc;
+    document.getElementById('setin').value = dictionary.setLoc;
+  };
+  
+  //maps part:
   geocoder = new google.maps.Geocoder();
   var myOptions = {
     zoom: 10,
@@ -93,10 +104,10 @@ function initialize() {
 function handleNoGeolocation(errorFlag) {
   if (errorFlag == true) {
     initialLocation = newyork;
-    contentString = "Error: The Geolocation service failed.";
+    contentString = dictionary.errorgeoloc;
   } else {
     initialLocation = siberia;
-    contentString = "Error: Your browser doesn't support geolocation. Are you in Siberia?";
+    contentString = dictionary.errorsiberia;
   }
   map.setCenter(initialLocation);
 }
@@ -127,26 +138,27 @@ function codeAddress() {
       });
       
     } else {
-      alert("Geocode was not successful for the following reason: " + status);
+      alert(dictionary.warngeocode + status);
     }
   });
 }
 
 function setLoc() {
   startPoint = document.getElementById("address").value;
-  alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng() + " Start Location: " + startPoint);
+  alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " " + dictionary.startloc + startPoint);
   if (document.getElementById('directions').className = 'start') {
     document.getElementById('directions').className = 'end';
   };
   if (document.getElementById('setin').onclick = setLoc) {
     document.getElementById('setin').onclick = setDest;
+    document.getElementById('setin').value = dictionary.setDest;
   };  
 }
 
 function setDest() {
   endPoint = document.getElementById("address").value;
-  //alert("Lat: " + markerLatLong.lat() + " Long " + markerLatLong.lng() + " Destination: " + endPoint);
-  alert("Start Location: " + startPoint + " Destination: " + endPoint);
+  //alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " Destination: " + endPoint);
+  alert(dictionary.setLoc + startPoint + " " + dictionary.destloc  + endPoint);
   if (document.getElementById('directions').className = 'end') {
     document.getElementById('directions').className = 'none';
   };
