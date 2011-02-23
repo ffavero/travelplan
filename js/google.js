@@ -38,6 +38,9 @@ function initialize() {
   if (!document.getElementById('directions').className) {
     document.getElementById('directions').className = 'start';
   };
+  if (!document.getElementById('uibar').className) {
+    document.getElementById('uibar').className = 'start';
+  };    
   if (!document.getElementById('okaddress').value) {
     document.getElementById('okaddress').value = dictionary.ok;
   }
@@ -146,15 +149,16 @@ function codeAddress() {
 }
 
 function setLoc() {
- 
   startPoint = document.getElementById("address").value;
   alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " " + dictionary.startloc + startPoint);
   if (document.getElementById('directions').className = 'start') { 
     $('#directions').fadeOut("slow", 
       function() {
-        document.getElementById('directions').className = 'end'
+        document.getElementById('directions').className = 'end';
+        document.getElementById('uibar').className = 'end';
     });
-    $('#directions').fadeIn("slow", 
+    $('#directions').fadeIn("slow",
+
       function() {
         //Finished
     });
@@ -168,11 +172,18 @@ function setLoc() {
 function setDest() {
   endPoint = document.getElementById("address").value;
   //alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " Destination: " + endPoint);
-  alert(dictionary.startloc + startPoint + " " + dictionary.destloc  + endPoint + " " + document.getElementById('directions').className);
+  alert(dictionary.startloc + startPoint + " " + dictionary.destloc  + endPoint);
   if (document.getElementById('directions').className = 'end') {
-    $('#directions').fadeOut("slow", 
+    $('#directions').fadeOut("slow",
       function() {
-        document.getElementById('directions').className = 'none'
+        document.getElementById('uibar').className = 'larger';
+        $('#uibar').animate({width:450}, "slow");
+        document.getElementById('directions').className = 'none';
     });  
   };
 }
+
+function animateUibar () {
+ $('#uibar').animate({"left": "+=90px"}, "slow");
+}
+
