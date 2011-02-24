@@ -238,6 +238,10 @@ function resTravel(org,dst) {
   }
   travelmap = new google.maps.Map(document.getElementById("map_canvas2"), myOptionsRes);
   dirDisplay.setMap(travelmap);
+  google.maps.event.addListener(dirDisplay, 'directions_changed', function() {
+      computeTotalDistance(dirDisplay.directions);
+    }
+  );
   var request = {
       origin: org,
       destination:dst,
@@ -250,6 +254,14 @@ function resTravel(org,dst) {
   })
 }
 
-
+function computeTotalDistance(result) {
+  var total = 0;
+  var myroute = result.routes[0];
+  for (i = 0; i < myroute.legs.length; i++) {
+    total += myroute.legs[i].distance.value;
+  }
+  total = total / 1000.
+  document.getElementById("textdist").innerHTML = total + " km";
+}
 
 
