@@ -66,6 +66,14 @@ html {
  background:#eeeee0;
 }
 
+#map_dist{
+ float:left;
+ height:300px; 
+ width:510px; 
+ margin-left:120px;
+ margin-top:20px;
+}
+
 #directions {
  height:300px;
  width:250px; 

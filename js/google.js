@@ -8,11 +8,16 @@ var infowindow = new google.maps.InfoWindow();
 var rendererOptions = {
   draggable: true
 };
-var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);;
-var directionsService = new google.maps.DirectionsService();
+
+var travelmap;
 var markerLatLong;
+var addressLoc;
+var coordOrig;
+var coordDest;
+var coordMid;
 var startPoint;
 var endPoint;
+
 function geocodePosition(pos) {
   geocoder.geocode({
     latLng: pos
@@ -26,11 +31,12 @@ function geocodePosition(pos) {
 }
 
 function updateMarkerPosition(latLng) {
-  markerLatLong= latLng;
+  markerLatLong = latLng;
 }
 
 function updateMarkerAddress(str) {
   document.getElementById('address').value = str;
+  addressLoc = str;
 }
 
 function setDefaultUI() {
@@ -70,6 +76,7 @@ function initialize() {
       geocodePosition(initialLocation);
       google.maps.event.addListener(marker, 'dragend', function() {
         geocodePosition(marker.getPosition());
+        updateMarkerPosition(marker.getPosition());        
       });
     }, function() {
       handleNoGeolocation(browserSupportFlag);
@@ -92,6 +99,7 @@ function initialize() {
       geocodePosition(initialLocation);
       google.maps.event.addListener(marker, 'dragend', function() {
         geocodePosition(marker.getPosition());
+        updateMarkerPosition(marker.getPosition());
       });
     }, function() {
       handleNoGeolocation(browserSupportFlag);
@@ -137,6 +145,7 @@ function codeAddress() {
       geocodePosition(results[0].geometry.location);
       google.maps.event.addListener(marker, 'dragend', function() {
         geocodePosition(marker.getPosition());
+        updateMarkerPosition(marker.getPosition());
       });
       
     } else {
@@ -146,7 +155,9 @@ function codeAddress() {
 }
 
 function setLoc() {
-  startPoint = document.getElementById("address").value;
+  coordOrig = new google.maps.LatLng(markerLatLong.lat(),markerLatLong.lng());
+  //startPoint = document.getElementById("address").value;
+  startPoint = addressLoc;
   alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " " + dictionary.startloc + startPoint);
   if (document.getElementById('directions').className == 'start') { 
     $('#directions').fadeOut("slow", 
@@ -168,7 +179,9 @@ function setLoc() {
 }
 
 function setDest() {
-  endPoint = document.getElementById("address").value;
+  coordDest = new google.maps.LatLng(markerLatLong.lat(),markerLatLong.lng());
+  //endPoint = document.getElementById("address").value;
+  endPoint = addressLoc;
   //alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " Destination: " + endPoint);
   alert(dictionary.startloc + startPoint + " " + dictionary.destloc  + endPoint);
   if (document.getElementById('directions').className == 'end') {
@@ -179,6 +192,7 @@ function setDest() {
         document.getElementById('redobutton').title = dictionary.resetDest;
     });  
   };
+  resTravel();
 }
 
 function reDoit () {
@@ -206,5 +220,33 @@ function reDoit () {
     document.getElementById('redobutton').title = dictionary.resetLoc;
     //document.getElementById('uibar').className = 'end';    
   };
+}
+
+//coordMid = google.maps.geometry.spherical.interpolate(coordOrig,coordDest,0.5);
+function resTravel() {
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  var myOptions = {
+    zoom:7,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    center: coordDest
+  }
+  map = new google.maps.Map(document.getElementById("map_dist"), myOptions);
+  directionsDisplay.setMap(map);
+  calcRoute();
+}
+
+var DirServ = new google.maps.DirectionsService(); 
+function calcRoute() {
+  var request = {
+      origin:coordOrig, 
+      destination:coordDest,
+      travelMode: google.maps.DirectionsTravelMode.DRIVING
+  };        
+  DirServ.route(request, function(response, status) {
+    alert(status);
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+  })
 }
 
