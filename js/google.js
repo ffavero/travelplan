@@ -5,10 +5,6 @@ var browserSupportFlag =  new Boolean();
 var geocode;
 var map;
 var infowindow = new google.maps.InfoWindow();
-var rendererOptions = {
-  draggable: true
-};
-
 var travelmap;
 var markerLatLong;
 var addressLoc;
@@ -192,7 +188,7 @@ function setDest() {
         document.getElementById('redobutton').title = dictionary.resetDest;
     });  
   };
-  resTravel();
+  resTravel(coordOrig,coordDest);
 }
 
 function reDoit () {
@@ -223,30 +219,37 @@ function reDoit () {
 }
 
 //coordMid = google.maps.geometry.spherical.interpolate(coordOrig,coordDest,0.5);
-function resTravel() {
-  directionsDisplay = new google.maps.DirectionsRenderer();
-  var myOptions = {
+var directionDisplay;
+var travelmap;
+var rendererOptions
+var dirDisplay;
+var DirServ;
+
+function resTravel(org,dst) {
+  rendererOptions = {
+    draggable: true
+  };
+  dirDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+  DirServ = new google.maps.DirectionsService(); 
+  var myOptionsRes = {
     zoom:7,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    center: coordDest
+    center: org
   }
-  map = new google.maps.Map(document.getElementById("map_dist"), myOptions);
-  directionsDisplay.setMap(map);
-  calcRoute();
-}
-
-var DirServ = new google.maps.DirectionsService(); 
-function calcRoute() {
+  travelmap = new google.maps.Map(document.getElementById("map_canvas2"), myOptionsRes);
+  dirDisplay.setMap(travelmap);
   var request = {
-      origin:coordOrig, 
-      destination:coordDest,
+      origin: org,
+      destination:dst,
       travelMode: google.maps.DirectionsTravelMode.DRIVING
-  };        
+  };
   DirServ.route(request, function(response, status) {
-    alert(status);
     if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
+      dirDisplay.setDirections(response);
     }
   })
 }
+
+
+
 
