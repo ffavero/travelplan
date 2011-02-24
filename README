@@ -3,14 +3,22 @@ Basic app (proof of concept) based on Google Maps API.
 what is doing:
 *Retrive default location by browser
 *Convert insert Location in geograph coordinare
+*Calculate distance (km) and draw a draggable track on the map.
 
 todo list:
-*Draw an horizontal  bar resuming the travel details...start (a ball in the bar), distance (lenght 
- annotated as mesure of the y axis), and destination (second ball in the bar) (also smallest points 
- in between?). suggestions using jquery.flot 
+*Think something intuitive to set the time/data
+*Draw an horizontal bar resuming the travel (start, go distance), onclick the gmap canvas show up..
+*Button to show up directions map and travel details
+*Not sure anmore about JSON stuff.. probably it's enought to take the data from the js code of the 
+ google.maps.DirectionsService direction...
 *retrive JSON file with info given the Lat and Lng (or set the point and retrive the JSON of the total...
- eg: http://maps.googleapis.com/maps/api/directions/json?origin=Toledo&destination=Madrid&sensor=true 
+ eg: http://maps.googleapis.com/maps/api/directions/json?origin=Milano&destination=Torino&sensor=true 
      http://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&sensor=true ) 
+*Make a dummy login form to test random usersID
+*User panel preference
+*A Nice theme!
+*Differents plugins (Twitter...)
+
 *Insert Start (several stops in the middle might be allowed) and End travel in a proper 
   Database (GQL work, might be usefull a satic map with coords to help to search faster?)
 

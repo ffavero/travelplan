@@ -5,7 +5,6 @@ var browserSupportFlag =  new Boolean();
 var geocode;
 var map;
 var infowindow = new google.maps.InfoWindow();
-var travelmap;
 var markerLatLong;
 var addressLoc;
 var coordOrig;
