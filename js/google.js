@@ -171,6 +171,9 @@ function setLoc() {
     document.getElementById('setin').value = dictionary.setDest;
     document.getElementById('redobutton').title = dictionary.resetLoc;
     document.getElementById('redobutton').onclick = reDoit;    
+  };
+  if (coordDest) {
+    geocodePosition(coordDest);
   };  
 }
 
@@ -199,6 +202,7 @@ function reDoit () {
        setDefaultUI();
        $('#uibar').css({marginLeft: ""});
       });
+    geocodePosition(coordOrig);
     $('#directions').fadeIn("slow",
       function() {
       // Done it
@@ -211,6 +215,7 @@ function reDoit () {
      function() {
        $('#directions').fadeIn("slow");
     });
+    geocodePosition(coordDest);
     document.getElementById('setin').onclick = setDest;
     document.getElementById('directions').className = 'end';
     document.getElementById('redobutton').title = dictionary.resetLoc;
