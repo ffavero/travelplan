@@ -279,13 +279,16 @@ function reDoit () {
     //document.getElementById('uibar').className = 'end';
     //hide text, end and track icons:
     $('#endicon').fadeOut("fast");
-    $('#start2end').animate({width:20},
-     function() {
-      $('#start2end').hide();
-    });
     $('#textdist').hide();
     $('#startpin').btOff();
-    $('#endpin').btOff();   
+    $('#endpin').btOff();    
+    $('#start2end').animate({width:20},
+     function() {
+      $('#start2end').hide('normal',
+        function() {
+          $('#startpin').btOn();
+      });
+    });   
   };
 }
 
@@ -319,6 +322,9 @@ function resTravel(org,dst) {
       $('#endpin').bt(lastdata.end,tipOpts);
       $('#startpin').btOn();
       $('#endpin').btOn();
+     //update the coordinate of the trip 
+      coordOrig = lastdata.startcoord;
+      coordDest = lastdata.endcoord;
      //done... next we have to put the final values into a DB... 
     }
   );
@@ -335,16 +341,18 @@ function resTravel(org,dst) {
 }
 
 function computeDiffTracks(result) {
-  var newdata = new Array(3);
+  var newdata = new Array(6);
   newdata.total = 0;
   var myroute = result.routes[0];
   for (i = 0; i < myroute.legs.length; i++) {
     newdata.total += myroute.legs[i].distance.value;
     if (i == 0) {
       newdata.start = myroute.legs[i].start_address;
+      newdata.startcoord = myroute.legs[i].start_location;      
     }
     if (i == (myroute.legs.length - 1)) {
       newdata.end = myroute.legs[i].end_address;
+      newdata.endcoord = myroute.legs[i].end_location;      
     }
   }
   //for (j = 0; j < myroute.overview_path.length; j++) {
