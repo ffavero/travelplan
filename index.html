@@ -2,10 +2,11 @@
  <head>
   <link type="text/css" rel="stylesheet" href="/themes/default/css/style.css" />
   <script type="text/javascript" src="/langs/en_US/words.js"></script>
-  <script type="text/javascript" src="/js/google.js"></script>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
- </head>
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+ <script type="text/javascript" src="/js/google.js"></script> 
+ <script type="text/javascript" src="/js/jquery.bt.min.js"></script> 
+</head>
  <body onload="initialize()">
   <div id="wrap">
    <div id="header">
@@ -21,11 +22,22 @@
      <input id="setin" type="button" />    
     </div> <!-- directions -->
     <div id="redo">
-     <input id="redobutton" type="image" src="/themes/default/images/reset.gif" />
+     <input id="redobutton" type="image" src="/themes/default/images/back.png" />
     </div> <!-- redo -->
     <div id="uibar">
-     <div id="textdist"></div>
-    </div><!--uibar--> 
+     <div id="starticon">
+      <img src="/themes/default/images/gmap_pin.png" id="startpin"/>
+     </div><!-- starticon -->
+     <div id="start2end">
+     </div><!-- start2end -->      
+     <div id="endicon">
+      <img src="/themes/default/images/gmap_pin.png" id="endpin"/>     
+     </div><!-- endicon -->          
+     <div id="textdist">
+     </div><!-- textdist -->
+    </div><!--uibar-->
+    <div id="helpui">
+    </div><!-- helpui --> 
     <div id="map_canvas2">
     </div> <!-- map_dist -->  
    </div> <!-- toppanel --> 

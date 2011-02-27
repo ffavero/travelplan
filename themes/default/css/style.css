@@ -10,7 +10,6 @@ html {
 #wrap {
  width:750px;
  margin:0 auto;
- background:#e0ffff;
 }
 
 #header {
@@ -26,8 +25,7 @@ html {
 #redo {
  margin-left:400px;
  width: 50px;
- height: 50px;
- background:#000; 
+ height: 50px; 
 }
 
 #redobutton {
@@ -37,11 +35,21 @@ html {
  height: 40px;
 }
 
+#helpui {
+ float:left;
+ margin-left: 10px;
+ width: 300px;
+ height: 400px;
+ margin-top: 0px;
+ background:url('/themes/default/images/blocknotes.png') no-repeat;   
+ background-size: 100%;
+}
+
 #uibar {
  width: 210px;
  height: 200px;
- background:#000;
  margin-top: 0px;
+ background:url('/themes/default/images/uibkg.png') repeat; 
 }
 
 #uibar.start {
@@ -58,11 +66,49 @@ html {
  float:left;
  margin-left: 150px;
 }
-#textdist{
- display:inline;
- color:#fff;
+
+#starticon{
+ float:left;
+ margin-top: 80px;
+ margin-left: 10px;
+ height:40px;
+ width:70px; 
+ background:url('/themes/default/images/start.png') no-repeat;
+ background-size: 100%;
 }
 
+#startpin, #endpin {
+ height: 20px; 
+ width: 20px;
+ margin-left: 30px; 
+}
+
+
+#endicon{
+ float:left;
+ margin-top: 80px;
+ margin-left: 40px;
+ margin-right: auto;
+ height:40px;
+ width:70px; 
+ background:url('/themes/default/images/end.png') no-repeat;
+ background-size: 100%;
+}
+
+#start2end {
+ float:left;
+ margin-top: 90px;
+ margin-left: 40px;
+ height:20px;
+ width: 20px;
+ background:url('/themes/default/images/street.png') no-repeat;
+}
+
+#textdist{
+ float:right;
+ color:#000;
+ margin-right: 40px;
+}
 
 #results {
  float:left;
@@ -83,7 +129,6 @@ html {
  height:300px;
  width:250px; 
  padding:10px;
- background:#000;
 }
 
 #map_canvas {
@@ -103,3 +148,12 @@ html {
  float:right;
  display: none;
 }
+
+
+
+
+
+
+
+
+

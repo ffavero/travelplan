@@ -43,7 +43,35 @@ function setDefaultUI() {
   document.getElementById('okaddress').value = dictionary.ok;
   document.getElementById('setin').onclick = setLoc;
   document.getElementById('setin').value = dictionary.setLoc;
+  //hide text, end and track icons:
+  $('#endicon').hide();
+  $('#start2end').hide();
+  $('#textdist').hide();
+  $('#uibar').hide();
 }
+
+var tipOpts = {
+  clickAnywhereToClose: false,
+  positions: 'top',
+  trigger: 'none',
+  width: 200,
+  centerPointX: .5,
+  spikeLength: 5,
+  spikeGirth: 10,
+  padding: 10,
+  cornerRadius: 25,
+  fill: '#FFF',
+  strokeStyle: '#ABABAB',
+  strokeWidth: 1,
+  shadow: true,
+  shadowOffsetX: 3,
+  shadowOffsetY: 3,
+  shadowBlur: 8,
+  shadowColor: 'rgba(0,0,0,.9)',
+  shadowOverlap: false,
+  noShadowOpts: {strokeStyle: '#999', strokeWidth: 2},
+  noShadowOpts: {strokeStyle: '#999', strokeWidth: 2}
+};
   
 function initialize() {
   setDefaultUI();
@@ -153,8 +181,10 @@ function setLoc() {
   coordOrig = new google.maps.LatLng(markerLatLong.lat(),markerLatLong.lng());
   //startPoint = document.getElementById("address").value;
   startPoint = addressLoc;
-  alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " " + dictionary.startloc + startPoint);
-  if (document.getElementById('directions').className == 'start') { 
+  $('#startpin').bt(startPoint,tipOpts);
+  //alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " " + dictionary.startloc + startPoint);
+  if (document.getElementById('directions').className == 'start') {
+    $('#helpui').slideUp("slow");
     $('#directions').fadeOut("slow", 
       function() {
         document.getElementById('directions').className = 'end';
@@ -162,7 +192,11 @@ function setLoc() {
     });
     $('#directions').fadeIn("slow",
       function() {
-        //Finished
+       $('#uibar').fadeIn("slow",
+         function() {
+           $('#startpin').btOn();
+       });
+        //Finished        
     });
   };
   if (document.getElementById('setin').onclick == setLoc) {
@@ -180,22 +214,45 @@ function setDest() {
   coordDest = new google.maps.LatLng(markerLatLong.lat(),markerLatLong.lng());
   //endPoint = document.getElementById("address").value;
   endPoint = addressLoc;
+  if (endPoint == startPoint) {
+    //break;
+    return false;
+  }
+  $('#endpin').bt(endPoint,tipOpts);    
   //alert(dictionary.lat + markerLatLong.lat() + " " + dictionary.lng + markerLatLong.lng() + " Destination: " + endPoint);
-  alert(dictionary.startloc + startPoint + " " + dictionary.destloc  + endPoint);
+  //alert(dictionary.startloc + startPoint + " " + dictionary.destloc  + endPoint);  
+  
   if (document.getElementById('directions').className == 'end') {
     $('#directions').fadeOut("slow",
       function() {
+        $('#startpin').btOff();
         $('#uibar').animate({width:450, marginLeft: "150px"}, "slow");
         document.getElementById('directions').className = 'none';
         document.getElementById('redobutton').title = dictionary.resetDest;
+        //animate and unhide the icons:
+        $('#start2end').show().animate({width:200},"slow",
+          function() {
+            $('#endicon').fadeIn("slow",
+             function() {
+              $('#textdist').show();
+              $('#startpin').btOn();
+              $('#endpin').btOn();
+            });
+        });
     });  
   };
   resTravel(coordOrig,coordDest);
+    
+  //document.getElementById('startpin').className = 'bt-active'
+
+  //alert($('#startpin').hasClass('bt-active'))
+
 }
 
 function reDoit () {
   //reset The Start Location
   if (document.getElementById('directions').className == 'end') {
+    $('#startpin').btOff();
     $('#directions').fadeOut("slow", 
       function() { 
        setDefaultUI();
@@ -204,6 +261,7 @@ function reDoit () {
     geocodePosition(coordOrig);
     $('#directions').fadeIn("slow",
       function() {
+      $('#helpui').slideDown("slow");
       // Done it
       });     
    };
@@ -218,14 +276,22 @@ function reDoit () {
     document.getElementById('setin').onclick = setDest;
     document.getElementById('directions').className = 'end';
     document.getElementById('redobutton').title = dictionary.resetLoc;
-    //document.getElementById('uibar').className = 'end';    
+    //document.getElementById('uibar').className = 'end';
+    //hide text, end and track icons:
+    $('#endicon').fadeOut("fast");
+    $('#start2end').animate({width:20},
+     function() {
+      $('#start2end').hide();
+    });
+    $('#textdist').hide();
+    $('#startpin').btOff();
+    $('#endpin').btOff();   
   };
 }
 
 //coordMid = google.maps.geometry.spherical.interpolate(coordOrig,coordDest,0.5);
-var directionDisplay;
 var travelmap;
-var rendererOptions
+var rendererOptions;
 var dirDisplay;
 var DirServ;
 
@@ -243,7 +309,17 @@ function resTravel(org,dst) {
   travelmap = new google.maps.Map(document.getElementById("map_canvas2"), myOptionsRes);
   dirDisplay.setMap(travelmap);
   google.maps.event.addListener(dirDisplay, 'directions_changed', function() {
-      computeTotalDistance(dirDisplay.directions);
+     // computeTotalDistance(dirDisplay.directions);
+     var lastdata = computeDiffTracks(dirDisplay.directions);
+     document.getElementById("textdist").innerHTML = lastdata.total + " km";
+     //update the baloons
+      $('#startpin').btOff();
+      $('#endpin').btOff();
+      $('#startpin').bt(lastdata.start,tipOpts);
+      $('#endpin').bt(lastdata.end,tipOpts);
+      $('#startpin').btOn();
+      $('#endpin').btOn();
+     //done... next we have to put the final values into a DB... 
     }
   );
   var request = {
@@ -258,14 +334,24 @@ function resTravel(org,dst) {
   })
 }
 
-function computeTotalDistance(result) {
-  var total = 0;
+function computeDiffTracks(result) {
+  var newdata = new Array(3);
+  newdata.total = 0;
   var myroute = result.routes[0];
   for (i = 0; i < myroute.legs.length; i++) {
-    total += myroute.legs[i].distance.value;
+    newdata.total += myroute.legs[i].distance.value;
+    if (i == 0) {
+      newdata.start = myroute.legs[i].start_address;
+    }
+    if (i == (myroute.legs.length - 1)) {
+      newdata.end = myroute.legs[i].end_address;
+    }
   }
-  total = total / 1000.
-  document.getElementById("textdist").innerHTML = total + " km";
+  //for (j = 0; j < myroute.overview_path.length; j++) {
+  // alert(myroute.overview_path[j]);
+  //}
+  newdata.total = newdata.total / 1000;
+  return(newdata);
 }
 
 
