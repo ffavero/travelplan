@@ -43,6 +43,10 @@ function setDefaultUI() {
   document.getElementById('okaddress').value = dictionary.ok;
   document.getElementById('setin').onclick = setLoc;
   document.getElementById('setin').value = dictionary.setLoc;
+  //show the useful hidden things
+  $('#address').show();
+  $('#okaddress').show();
+  $('#setin').show();  
   //hide text, end and track icons:
   $('#endicon').hide();
   $('#start2end').hide();
@@ -214,6 +218,7 @@ function setDest() {
   coordDest = new google.maps.LatLng(markerLatLong.lat(),markerLatLong.lng());
   //endPoint = document.getElementById("address").value;
   endPoint = addressLoc;
+  $('#resbar').fadeOut("fast");
   if (endPoint == startPoint) {
     //break;
     return false;
@@ -237,16 +242,56 @@ function setDest() {
               $('#textdist').show();
               $('#startpin').btOn();
               $('#endpin').btOn();
+              $('#resbar').slideDown("slow");
             });
         });
     });  
   };
   resTravel(coordOrig,coordDest);
-    
+  document.getElementById('showmap').src= '/themes/default/images/google-maps.png';
+  document.getElementById('tripdetails').src= '/themes/default/images/travelnote.png';
+  document.getElementById('travelissok').src= '/themes/default/images/ok.png';
+  
+  document.getElementById('showmap').title= dictionary.lookMap ;
+  document.getElementById('tripdetails').title= dictionary.lookDetails;
+  document.getElementById('travelissok').title= dictionary.travelOk;
+  
+  document.getElementById('showmap').onclick= showhideMap;
+  document.getElementById('tripdetails').onclick= showhideDetails;
+  document.getElementById('travelissok').onclick= saveAndSearch;    
   //document.getElementById('startpin').className = 'bt-active'
 
   //alert($('#startpin').hasClass('bt-active'))
 
+}
+
+function showhideMap() {
+  if($('#map_canvas2').is(":visible")) {
+   $('#map_canvas2').slideUp('slow');
+  } else {
+   if ($('#dirpanel').is(":visible")) {
+     $('#dirpanel').hide();
+   }
+   $('#map_canvas2').slideDown('slow',
+   function() {
+   //can't (lazy) find out a better solution...
+    resTravel(coordOrig,coordDest);
+   });
+  }
+}
+
+function showhideDetails() {
+  if($('#dirpanel').is(":visible")) {
+   $('#dirpanel').slideUp('slow');
+  } else {
+   if ($('#map_canvas2').is(":visible")) {
+     $('#map_canvas2').hide();
+   }
+   $('#dirpanel').empty(); // otherwise appends new track to the old one...
+   resTravel(coordOrig,coordDest);     
+   //$('#dirpanel').slideDown('slow');
+   $('#dirpanel').dialog({width: 460 });
+  }
 }
 
 function reDoit () {
@@ -268,6 +313,7 @@ function reDoit () {
   //reset the destination
   if (document.getElementById('directions').className == 'none') {
     //$('#directions').fadeOut("slow");
+    $('#resbar').slideUp("slow");
     $('#uibar').animate({width:210,marginLeft: "270px"}, "slow", 
      function() {
        $('#directions').fadeIn("slow");
@@ -282,7 +328,7 @@ function reDoit () {
     $('#textdist').hide();
     $('#startpin').btOff();
     $('#endpin').btOff();    
-    $('#start2end').animate({width:20},
+    $('#start2end').animate({width:0}, "slow",
      function() {
       $('#start2end').hide('normal',
         function() {
@@ -311,6 +357,7 @@ function resTravel(org,dst) {
   }
   travelmap = new google.maps.Map(document.getElementById("map_canvas2"), myOptionsRes);
   dirDisplay.setMap(travelmap);
+  dirDisplay.setPanel(document.getElementById("dirpanel"));
   google.maps.event.addListener(dirDisplay, 'directions_changed', function() {
      // computeTotalDistance(dirDisplay.directions);
      var lastdata = computeDiffTracks(dirDisplay.directions);
@@ -360,6 +407,69 @@ function computeDiffTracks(result) {
   //}
   newdata.total = newdata.total / 1000;
   return(newdata);
+}
+
+
+
+var caropts = 2;
+
+function getColorOpts(caropts) {
+  if (caropts == 2) {
+   document.getElementById('car').src = '/themes/default/images/caroff.png';
+   document.getElementById('lift').src = '/themes/default/images/thumbon.png';
+  }
+  if (caropts == 1) {
+    document.getElementById('car').src = '/themes/default/images/caron.png';
+    document.getElementById('lift').src = '/themes/default/images/thumboff.png';
+  }
+}
+
+
+function gotCar() {
+ caropts = 1;
+ getColorOpts(caropts);
+}
+
+function notCar() {
+ caropts = 2;
+ getColorOpts(caropts);
+}
+
+
+function initDate() {
+  document.getElementById('car').onclick = gotCar;
+  document.getElementById('lift').onclick = notCar;
+  getColorOpts(caropts);
+  $('#carslide').slider({
+   value: caropts,
+   min:1,
+   max:2,
+   step:1,
+   change: function( event, ui ) {
+     caropts = $('#carslide').slider('value');
+     getColorOpts(caropts);
+   }  
+  });
+
+  document.getElementById('settime').src = '/themes/default/images/ok.png';  
+  document.getElementById('settime').title = dictionary.setTime;
+  document.getElementById('settime').onclick = initialize;
+  //$('#datediv').dialog({modal: true }); 
+  $('#endicon').hide();
+  $('#start2end').hide();
+  $('#textdist').hide();
+  $('#uibar').hide();
+  $('#address').hide();
+  $('#okaddress').hide();
+  $('#setin').hide();
+  $('#resbar').hide();
+  $('#map_canvas2').hide();
+  $('#dirpanel').hide(); 
+  $('#datetime').datetimepicker({
+    showOn: 'button',
+    buttonImageOnly: true,
+    buttonImage: '/themes/default/images/cal_small.png',
+  });
 }
 
 

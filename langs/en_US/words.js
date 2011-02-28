@@ -13,4 +13,9 @@ dictionary.lat = 'Latitude: ';
 dictionary.lng = 'Longitude: ';
 dictionary.refresh = 'Refresh Map';
 dictionary.resetLoc = 'Reset Start';
-dictionary.resetDest = 'Reset Destination'
+dictionary.resetDest = 'Reset Destination';
+dictionary.setTime = 'Set the Time';
+dictionary.lookMap = 'Look travel Map';
+dictionary.lookDetails = 'Look travel Details';
+dictionary.travelOk = 'Save and Search for it'
+

@@ -1,17 +1,32 @@
 <html>
  <head>
+ <link type="text/css" rel="stylesheet" href="/themes/default/css/start/jquery-ui-1.8.10.custom.css" />
   <link type="text/css" rel="stylesheet" href="/themes/default/css/style.css" />
   <script type="text/javascript" src="/langs/en_US/words.js"></script>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
  <script type="text/javascript" src="/js/google.js"></script> 
- <script type="text/javascript" src="/js/jquery.bt.min.js"></script> 
+ <script type="text/javascript" src="/js/jquery.bt.min.js"></script>
+ <script type="text/javascript" src="/js/jquery-ui-1.8.10.custom.min.js"></script>
+ <script type="text/javascript" src="https://github.com/trentrichardson/jQuery-Timepicker-Addon/raw/master/jquery-ui-timepicker-addon.js"></script>
 </head>
- <body onload="initialize()">
+ <body onload="initDate()">
   <div id="wrap">
    <div id="header">
    </div> <!-- header -->
-   <div id="toppanel">   
+   <div id="opts">
+    <div id="datediv">
+    <input type="text" id="datetime" name="datetime" />
+    <input id="settime" type="image" />
+    </div> <!-- datediv -->
+    <div id="carset">
+     <input type="image" id="car" />
+      <div id="carslide"></div> <!--  carslide -->  
+     <input type="image" id="lift" />  
+    </div> <!-- carset -->
+   </div> <!-- opts -->
+   
+   <div id="toppanel">
     <div id="directions" class="start">
      <input id="address" type="textbox"  />
      <input type="button" id="okaddress" onclick="codeAddress()" />
@@ -38,11 +53,20 @@
     </div><!--uibar-->
     <div id="helpui">
     </div><!-- helpui --> 
-    <div id="map_canvas2">
-    </div> <!-- map_dist -->  
+    <div id="resbar">
+     <input type="image" id="showmap" />
+     <input type="image" id="tripdetails" />
+     <input type="image" id="travelissok" />
+    </div> <!-- resbar-->
    </div> <!-- toppanel --> 
+   
    <div id="results">
-   </div> <!-- results -->  
+    <div id="map_canvas2">
+    </div> <!-- map_canvas2 -->
+    <div id="dirpanel">
+    </div> <!-- dirpanel -->
+   </div> <!-- results -->
+   
   </div> <!-- wrap -->
  </body>
 </html>

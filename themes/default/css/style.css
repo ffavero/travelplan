@@ -12,14 +12,17 @@ html {
  margin:0 auto;
 }
 
-#header {
+#header ,#opts {
+ height: 30px;
  margin-top: 10px;
  padding:5px 10px;
  background:#eeeee0;
 }
 
 #toppanel {
- height: 400px;
+ height: 450px;
+ background:url('/themes/default/images/background2.png') no-repeat;
+ background-size: 100%;
 }
 
 #redo {
@@ -49,7 +52,6 @@ html {
  width: 210px;
  height: 200px;
  margin-top: 0px;
- background:url('/themes/default/images/uibkg.png') repeat; 
 }
 
 #uibar.start {
@@ -113,19 +115,54 @@ html {
 #results {
  float:left;
  height:250px;
- padding:10px;
- background:#eeeee0;
 }
 
-#map_canvas2{
+#map_canvas2 {
  float:left;
  height:300px; 
  width:510px; 
  margin-left:120px;
- margin-top:20px;
+ margin-top:0px;
+}
+
+#carset {
+ float:left;
+ margin-left: 60px;
+}
+
+#carslide {
+ margin-top: 10px;
+ float:left;
+ margin-left: 20px;
+ width:50px; 
+}
+
+#car {
+ float:left;
+  width:30px;
+  height:30px;
+} 
+
+#lift {
+ float:left;
+ margin-left: 20px;
+ width:30px;
+ height:30px;
+}
+
+#datediv {
+ float:left;
+ width:250px;
+}
+
+#settime {
+ height: 20px;
+ width: 20px;
+ margin-top: 5px;  
 }
 
 #directions {
+ margin-top: 20px;
  height:300px;
  width:250px; 
  padding:10px;
@@ -134,6 +171,27 @@ html {
 #map_canvas {
  width: 240px;
  height: 240px;
+}
+
+#resbar {
+ float:left;
+ margin-left: 200px;
+ margin-top: 100px;
+ width: 450px;
+ height: 50px;
+}
+
+#showmap, #tripdetails {
+ margin-top: 5px;
+ margin-left:20px;
+ width: 40px;
+ height: 40px;
+}
+#travelissok {
+ margin-top: 5px;
+ float:right;
+ width: 40px;
+ height: 40px
 }
 
 #directions.start {
@@ -149,3 +207,13 @@ html {
  display: none;
 }
 
+.ui-widget {
+ font-size: 12px;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
