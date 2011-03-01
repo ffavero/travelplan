@@ -24,3 +24,7 @@ dictionary.redate = 'Set the date again';
 dictionary.navApps = 'Application';
 dictionary.navTravels = 'My Travels';
 dictionary.navSettings = 'User Settings';
+
+//Help Messages
+dictionary.msg1 = '<h1>Some</h1> help <p>tip <h2>here</h2> in HTML markup :P';
+

@@ -493,7 +493,9 @@ function initDate() {
   document.getElementById('nav-apps').innerHTML = dictionary.navApps; 
   document.getElementById('nav-travels').innerHTML = dictionary.navTravels; 
   document.getElementById('nav-settings').innerHTML = dictionary.navSettings; 
-          
+
+  document.getElementById('texthelp').innerHTML = dictionary.msg1;           
+
   document.getElementById('car').onclick = gotCar;
   document.getElementById('lift').onclick = notCar;
   getColorOpts(caropts);
@@ -520,6 +522,7 @@ function initDate() {
   $('#textdist').hide();
   $('#uibar').hide();
   $('#address').hide();
+  $( "button, input:button, a", '#directions' ).button();
   $('#okaddress').hide();
   $('#setin').hide();
   $('#resbar').hide();

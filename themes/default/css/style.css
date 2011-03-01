@@ -36,7 +36,6 @@ html {
  float:left;
  padding: 0px 0px;
  margin: 0px auto;
- background: #000;
  height: 45px ;
  width: 400px;
 }
@@ -120,6 +119,15 @@ html {
  margin-top: 50px;
  background:url('/themes/default/images/blocknotes.png') no-repeat;   
  background-size: 100%;
+}
+
+#texthelp {
+ float:left;
+ display:block;
+ margin:50px;
+ width: 197px;
+ height: 266px;
+ border:1px #000  dotted;
 }
 
 #uibar {
@@ -281,8 +289,18 @@ html {
  display: none;
 }
 
+#address {
+ font-size: 10px;
+ width: 190px;
+ height: 30px
+}
+
 .ui-widget {
  font-size: 12px;
+}
+
+.ui-button {
+ font-size: 10px;
 }
 
 /* css for timepicker */
