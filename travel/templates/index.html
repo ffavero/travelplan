@@ -1,62 +1,60 @@
 {% extends 'base.html' %}
 
+{% block nav-apps %}<a class="selected" href="/" id="nav-apps" ></a>{% endblock %}
+
+
 {% block realapp %}
-  <div id="wrap">
-   <div id="header">
-   </div> <!-- header -->
-   <div id="opts">
-    <div id="datediv">
-    <input type="text" id="datetime" name="datetime" />
-    <input id="settime" type="image" />
-    </div> <!-- datediv -->
-    <div id="carset">
-     <input type="image" id="car" />
-      <div id="carslide"></div> <!--  carslide -->  
-     <input type="image" id="lift" />  
-    </div> <!-- carset -->
-   </div> <!-- opts -->
+
+<div id="opts">
+<div id="datediv">
+<input type="text" id="datetime" name="datetime" />
+<input id="settime" type="image" />
+</div><!-- datediv -->
+<div id="carset">
+ <input type="image" id="car" />
+  <div id="carslide"></div><!--  carslide -->  
+ <input type="image" id="lift" />  
+</div><!-- carset -->
+ <input id="redobutton" type="image" />
+</div><!-- opts -->
+<div id="toppanel">
+ <div id="directions" class="start">
+  <input id="address" type="textbox"  />
+  <input type="button" id="okaddress" onclick="codeAddress()" />
+  <div id="maps">
+   <div id="map_canvas">
+   </div><!-- map_canvas -->
+  </div><!-- maps -->
+  <input id="setin" type="button" />    
+ </div><!-- directions -->
+ <div id="uibar">
+  <div id="starticon">
+   <img src="/themes/default/images/gmap_pin.png" id="startpin"/>
+  </div><!-- starticon -->
+  <div id="start2end">
+  </div><!-- start2end -->      
+  <div id="endicon">
+   <img src="/themes/default/images/gmap_pin.png" id="endpin"/>     
+  </div><!-- endicon -->          
+  <div id="textdist">
+  </div><!-- textdist -->
+ </div><!--uibar-->
+ <div id="helpui">
+ </div><!-- helpui --> 
+ <div id="resbar">
+  <input type="image" id="showmap" />
+  <input type="image" id="tripdetails" />
+  <input type="image" id="travelissok" />
+ </div><!-- resbar-->
+</div><!-- toppanel --> 
    
-   <div id="toppanel">
-    <div id="directions" class="start">
-     <input id="address" type="textbox"  />
-     <input type="button" id="okaddress" onclick="codeAddress()" />
-     <div id="maps">
-      <div id="map_canvas">
-      </div> <!-- map_canvas -->
-     </div> <!-- maps -->
-     <input id="setin" type="button" />    
-    </div> <!-- directions -->
-    <div id="redo">
-     <input id="redobutton" type="image" src="/themes/default/images/back.png" />
-    </div> <!-- redo -->
-    <div id="uibar">
-     <div id="starticon">
-      <img src="/themes/default/images/gmap_pin.png" id="startpin"/>
-     </div><!-- starticon -->
-     <div id="start2end">
-     </div><!-- start2end -->      
-     <div id="endicon">
-      <img src="/themes/default/images/gmap_pin.png" id="endpin"/>     
-     </div><!-- endicon -->          
-     <div id="textdist">
-     </div><!-- textdist -->
-    </div><!--uibar-->
-    <div id="helpui">
-    </div><!-- helpui --> 
-    <div id="resbar">
-     <input type="image" id="showmap" />
-     <input type="image" id="tripdetails" />
-     <input type="image" id="travelissok" />
-    </div> <!-- resbar-->
-   </div> <!-- toppanel --> 
+<div id="results">
+ <div id="map_canvas2">
+ </div><!-- map_canvas2 -->
+ <div id="dirpanel">
+ </div><!-- dirpanel -->
+</div><!-- results -->
    
-   <div id="results">
-    <div id="map_canvas2">
-    </div> <!-- map_canvas2 -->
-    <div id="dirpanel">
-    </div> <!-- dirpanel -->
-   </div> <!-- results -->
-   
-  </div> <!-- wrap -->
+
 {% endblock %}
 

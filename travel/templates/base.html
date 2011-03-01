@@ -17,9 +17,25 @@
 
 </head>
  <body >
-
-{% block realapp %}
-Page title
+  <div id="wrap">
+   <div id="header">
+    <div id="title">
+    
+    </div><!-- title -->
+{% block nav %}
+    <div id="nav">
+     <ul>
+      <li>{% block nav-apps %}<a id="nav-apps" href="/"></a>{% endblock %}</li>
+      <li>{% block nav-travels %}<a id="nav-travels" href="/travels/"></a>{%endblock %}</li>
+      <li>{% block nav-settings %}<a id="nav-settings" href="/settings/"></a>{% endblock%}</li>
+     </ul>
+    </div> <!-- nav -->
 {% endblock %}
+
+   </div> <!-- header -->
+{% block realapp %}
+Nothing here
+{% endblock %}
+  </div> <!-- wrap -->
  </body>
 </html>

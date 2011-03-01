@@ -12,7 +12,14 @@ html {
  margin:0 auto;
 }
 
-#header ,#opts {
+#header {
+ height: 100px;
+ margin-top: 10px;
+ padding:5px 10px;
+ background:#eeeee0;
+}
+
+#opts {
  height: 30px;
  margin-top: 10px;
  padding:5px 10px;
@@ -25,17 +32,84 @@ html {
  background-size: 100%;
 }
 
-#redo {
- margin-left:400px;
- width: 50px;
- height: 50px; 
+#title {
+ float:left;
+ padding: 0px 0px;
+ margin: 0px auto;
+ background: #000;
+ height: 45px ;
+ width: 400px;
+}
+
+
+#nav {
+ float: left;
+ overflow: hidden;
+ padding: 0px 0px;
+ position: relative; padding: .2em;
+ zoom: 1;
+ margin-bottom: 0px;
+}
+
+
+#nav ul {
+ margin:0;
+ padding:0;
+ overflow: hidden;
+ list-style: none;
+ float: left; 
+ position: relative; 
+ top: 1px; 
+ margin: 0 .2em 1px 0;
+ border-bottom: 0 !important;
+ padding: 0; 
+ white-space: nowrap; 
+}
+
+#nav li {
+ float: left;
+ height: 50px;
+ width: 120px;
+ background: #bbb;
+ position: relative; 
+ top: 1px; 
+ margin: 0 .2em 1px 0;
+ border-bottom: 0 !important;
+ padding: 0; 
+ white-space: nowrap; 
+}
+
+#nav li a:link, #navigation li a:visited {
+ text-decoration: none;
+ cursor: pointer;
+ display: block;
+ height: 50px;
+ color: #fff;
+ line-height: 50px;
+ padding: 0 9px 0 9px;
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: 15px;
+ font-weight: bold;
+ text-align:center; 
+
+}
+
+#nav li a:hover {
+ background: #999;
+ color: #000;
+ border: 1px dotted #3A5896;
+}
+
+#nav li a.selected {
+ background: #7f46d7;
+ color: #fff;
 }
 
 #redobutton {
- display:inline;
- margin:5px;
- width: 40px;
- height: 40px;
+ float:right;
+ margin-right:100px;
+ width: 30px;
+ height: 30px;
 }
 
 #helpui {
@@ -43,7 +117,7 @@ html {
  margin-left: 10px;
  width: 300px;
  height: 400px;
- margin-top: 0px;
+ margin-top: 50px;
  background:url('/themes/default/images/blocknotes.png') no-repeat;   
  background-size: 100%;
 }
@@ -51,7 +125,7 @@ html {
 #uibar {
  width: 210px;
  height: 200px;
- margin-top: 0px;
+ margin-top: 50px;
 }
 
 #uibar.start {

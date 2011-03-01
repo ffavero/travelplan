@@ -17,5 +17,10 @@ dictionary.resetDest = 'Reset Destination';
 dictionary.setTime = 'Set the Time';
 dictionary.lookMap = 'Look travel Map';
 dictionary.lookDetails = 'Look travel Details';
-dictionary.travelOk = 'Save and Search for it'
+dictionary.travelOk = 'Save and Search for it';
+dictionary.redate = 'Set the date again';
 
+// Nav titles
+dictionary.navApps = 'Application';
+dictionary.navTravels = 'My Travels';
+dictionary.navSettings = 'User Settings';
