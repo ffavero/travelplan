@@ -1,14 +1,9 @@
-application: travelplan
+application: djangotravel
 version: 1
 runtime: python
 api_version: 1
 
 handlers:
-
-- url: /
-  static_files: index.html
-  upload: index.html
-
 - url: /themes
   static_dir: themes
 
@@ -18,7 +13,12 @@ handlers:
 - url: /langs
   static_dir: langs  
 
+- url: /
+  script: main.py
+
+
 skip_files:
 - ^(.*/)?.*\.py[co]$
 - ^(.*/)?\..*
 - ^app\.yaml$
+

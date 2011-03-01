@@ -1,6 +1,7 @@
 Basic app (proof of concept) based on Google Maps API.
 
 what is doing:
+*Run with the Django framework
 *Retrive default location by browser
 *Convert insert Location in geograph coordinare
 *Calculate distance (km) and draw a draggable track on the map.

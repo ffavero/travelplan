@@ -292,7 +292,9 @@ function showhideDetails() {
    //$('#dirpanel').slideDown('slow');
    $('#dirpanel').dialog({
     width: 460,
-    draggable: false
+    modal: true,
+    draggable: false,
+    position: 'top'
     });
   }
 }

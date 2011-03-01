@@ -1,16 +1,6 @@
-<html>
- <head>
- <link type="text/css" rel="stylesheet" href="/themes/default/css/start/jquery-ui-1.8.10.custom.css" />
-  <link type="text/css" rel="stylesheet" href="/themes/default/css/style.css" />
-  <script type="text/javascript" src="/langs/en_US/words.js"></script>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
- <script type="text/javascript" src="/js/google.js"></script> 
- <script type="text/javascript" src="/js/jquery.bt.min.js"></script>
- <script type="text/javascript" src="/js/jquery-ui-1.8.10.custom.min.js"></script>
- <script type="text/javascript" src="https://github.com/trentrichardson/jQuery-Timepicker-Addon/raw/master/jquery-ui-timepicker-addon.js"></script>
-</head>
- <body onload="initDate()">
+{% extends 'base.html' %}
+
+{% block realapp %}
   <div id="wrap">
    <div id="header">
    </div> <!-- header -->
@@ -68,5 +58,5 @@
    </div> <!-- results -->
    
   </div> <!-- wrap -->
- </body>
-</html>
+{% endblock %}
+
