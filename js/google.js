@@ -312,6 +312,26 @@ function setDest() {
 
 }
 
+function saveAndSearch() {
+
+ //collect all the mess we've done around.. for now
+ // needs: userid(dummy for now) ,time, orig latlan, dest latlan, array of all latlans,
+ //  if by car or not, how many places in the car....
+ // userid : dummy
+ // orig = coorOrig ->  in lastdata as a lot of others
+ // dest = coorDest
+ // latlans... from overview.. (still to to)
+ // time.. from time var (still to imporove)
+  
+  //now just debug lat anf lng of the overview...
+ var resVect = '';
+ alert ("Debugging longitude");
+ for (j = 0; j < lastdata.overview.length ; j++) {
+  resVect = resVect + " " + lastdata.overview[j].lng().toFixed(3)
+ } 
+ alert(resVect);
+}
+
 function showhideMap() {
   if($('#map_canvas2').is(":visible")) {
    $('#map_canvas2').slideUp('slow');
@@ -393,7 +413,7 @@ var travelmap;
 var rendererOptions;
 var dirDisplay;
 var DirServ;
-
+var lastdata;
 function resTravel(org,dst) {
   rendererOptions = {
     draggable: true
@@ -410,7 +430,7 @@ function resTravel(org,dst) {
   dirDisplay.setPanel(document.getElementById("dirpanel"));
   google.maps.event.addListener(dirDisplay, 'directions_changed', function() {
      // computeTotalDistance(dirDisplay.directions);
-     var lastdata = computeDiffTracks(dirDisplay.directions);
+     lastdata = computeDiffTracks(dirDisplay.directions);
      document.getElementById("textdist").innerHTML = lastdata.total + " km";
      //update the baloons
       $('#startpin').btOff();
@@ -452,9 +472,9 @@ function computeDiffTracks(result) {
       newdata.endcoord = myroute.legs[i].end_location;      
     }
   }
-  //for (j = 0; j < myroute.overview_path.length; j++) {
-  // alert(myroute.overview_path[j]);
-  //}
+  
+  newdata.overview = myroute.overview_path; // array of latlan
+  
   newdata.total = newdata.total / 1000;
   return(newdata);
 }
