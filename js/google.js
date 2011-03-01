@@ -547,7 +547,8 @@ function initDate() {
   $('#setin').hide();
   $('#resbar').hide();
   $('#map_canvas2').hide();
-  $('#dirpanel').hide(); 
+  $('#dirpanel').hide();
+ 
   $('#datetime').datetimepicker({
     showOn: 'button',
     buttonImageOnly: true,
