@@ -498,13 +498,18 @@ function getColorOpts(caropts) {
 function gotCar() {
  caropts = 1;
  getColorOpts(caropts);
+ $('#carslide').slider({"value":caropts});
 }
 
 function notCar() {
  caropts = 2;
  getColorOpts(caropts);
+ $('#carslide').slider({"value":caropts}); 
 }
 
+function createDate() {
+ $('#datediv').dialog('close')
+}
 
 function initDate() {
   // Not the place here for someone of thos.. just beacause is the first functino...
@@ -533,10 +538,10 @@ function initDate() {
   document.getElementById('redobutton').title = dictionary.redate;
   document.getElementById('redobutton').src = '/themes/default/images/back.png';
   document.getElementById('redobutton').onclick = initDate;
-  document.getElementById('settime').src = '/themes/default/images/ok.png';
+ /* document.getElementById('settime').src = '/themes/default/images/ok.png';
   document.getElementById('settime').title = dictionary.setTime;
-  document.getElementById('settime').onclick = initialize;
-  //$('#datediv').dialog({modal: true }); 
+  document.getElementById('settime').onclick = initialize; */
+  //$('#datediv').dialog({modal: true });
   $('#endicon').hide();
   $('#start2end').hide();
   $('#textdist').hide();
@@ -548,11 +553,30 @@ function initDate() {
   $('#resbar').hide();
   $('#map_canvas2').hide();
   $('#dirpanel').hide();
- 
-  $('#datetime').datetimepicker({
-    showOn: 'button',
-    buttonImageOnly: true,
-    buttonImage: '/themes/default/images/cal_small.png',
+  $('#datetime').datetimepicker();
+  
+  //getter
+  var showButtonPanel = $('#datetime').datepicker( "option", "showButtonPanel" );
+  //setter
+  $('#datetime').datepicker( "option", "showButtonPanel", false );
+
+  /* 
+  $('#datetime').datepicker({
+   onClose: function() {$('#datediv').dialog( "close" ) }
+  });
+   */
+  $('#datediv').dialog({
+   modal: true,
+   "width": 250,
+   "height":350,
+   resizable : false,
+   buttons: {
+    Ok : function() {
+      $( this ).dialog( "close" );
+      document.getElementById('datetxt').innerHTML = $('#datetime').datepicker( "getDate" ) ; 
+      initialize();
+    }
+   }
   });
 }
 

@@ -28,3 +28,24 @@ dictionary.navSettings = 'User Settings';
 //Help Messages
 dictionary.msg1 = '<h1>Some</h1> help <p>tip <h2>here</h2> in HTML markup :P';
 
+
+//Months
+
+var dictMonths = new Array(12);
+dictMonths[1] = 'January';
+dictMonths[2] = 'February';
+dictMonths[3] = 'March';
+dictMonths[4] = 'April';
+dictMonths[5] = 'May';
+dictMonths[6] = 'June';
+dictMonths[7] = 'July';
+dictMonths[8] = 'August';
+dictMonths[9] = 'September';
+dictMonths[10] = 'October';
+dictMonths[11] = 'November';
+dictMonths[12] = 'Dicember';
+
+
+
+
+

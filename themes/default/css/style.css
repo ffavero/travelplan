@@ -40,7 +40,6 @@ html {
  width: 400px;
 }
 
-
 #nav {
  float: left;
  overflow: hidden;
@@ -49,7 +48,6 @@ html {
  zoom: 1;
  margin-bottom: 0px;
 }
-
 
 #nav ul {
  margin:0;
@@ -90,7 +88,6 @@ html {
  font-size: 15px;
  font-weight: bold;
  text-align:center; 
-
 }
 
 #nav li a:hover {
@@ -234,7 +231,27 @@ html {
 
 #datediv {
  float:left;
+ width:240px;
+ height:365px;
+}
+
+#dateres {
+ float:left;
  width:250px;
+ height: 30px;
+}
+
+#day {
+ float:left;
+ text-align:center;
+ padding:10px 0 10px 0;
+ width: 30px;
+ background:url('/themes/default/images/calendar.png') no-repeat;
+ background-size: 100%;
+}
+
+#datetxt {
+ font-size: 12px;
 }
 
 #settime {

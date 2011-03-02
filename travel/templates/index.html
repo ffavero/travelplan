@@ -3,13 +3,19 @@
 {% block nav-apps %}<a class="selected" href="/" id="nav-apps" ></a>{% endblock %}
 
 
-{% block realapp %}
+{% block contents %}
 
 <div id="opts">
 <div id="datediv">
-<input type="text" id="datetime" name="datetime" />
-<input id="settime" type="image" />
+ <!--<input type="text" id="datetime" name="datetime" />
+ <input id="settime" type="image" /> -->
+ <div id="datetime"></div><!--datetime-->
 </div><!-- datediv -->
+<div id="dateres">
+ <div id="day">31</div>
+<!-- <div id="datetxt"><b>December</b> 2011</br>16:45</div>-->
+ <div id="datetxt"></div>
+</div><!-- dateres -->
 <div id="carset">
  <input type="image" id="car" />
   <div id="carslide"></div><!--  carslide -->  
