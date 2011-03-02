@@ -32,18 +32,18 @@ dictionary.msg1 = '<h1>Some</h1> help <p>tip <h2>here</h2> in HTML markup :P';
 //Months
 
 var dictMonths = new Array(12);
-dictMonths[1] = 'January';
-dictMonths[2] = 'February';
-dictMonths[3] = 'March';
-dictMonths[4] = 'April';
-dictMonths[5] = 'May';
-dictMonths[6] = 'June';
-dictMonths[7] = 'July';
-dictMonths[8] = 'August';
-dictMonths[9] = 'September';
-dictMonths[10] = 'October';
-dictMonths[11] = 'November';
-dictMonths[12] = 'Dicember';
+dictMonths[0] = 'January';
+dictMonths[1] = 'February';
+dictMonths[2] = 'March';
+dictMonths[3] = 'April';
+dictMonths[4] = 'May';
+dictMonths[5] = 'June';
+dictMonths[6] = 'July';
+dictMonths[7] = 'August';
+dictMonths[8] = 'September';
+dictMonths[9] = 'October';
+dictMonths[10] = 'November';
+dictMonths[11] = 'Dicember';
 
 
 

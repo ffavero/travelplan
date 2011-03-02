@@ -554,7 +554,7 @@ function initDate() {
   $('#map_canvas2').hide();
   $('#dirpanel').hide();
   $('#datetime').datetimepicker();
-  
+
   //getter
   var showButtonPanel = $('#datetime').datepicker( "option", "showButtonPanel" );
   //setter
@@ -567,13 +567,15 @@ function initDate() {
    */
   $('#datediv').dialog({
    modal: true,
-   "width": 250,
-   "height":350,
+   "width": 240,
+   "height":360,
    resizable : false,
    buttons: {
     Ok : function() {
       $( this ).dialog( "close" );
-      document.getElementById('datetxt').innerHTML = $('#datetime').datepicker( "getDate" ) ; 
+      var datestr = $('#datetime').datetimepicker( "getDate" );
+      document.getElementById('day').innerHTML = datestr.getDate();
+      document.getElementById('datetxt').innerHTML = "<b>"+dictMonths[datestr.getMonth()]+"</b> "+ datestr.getFullYear()+"</br>" + datestr.getHours()+":"+datestr.getMinutes(); 
       initialize();
     }
    }

@@ -15,13 +15,15 @@ import django.db
 import django.dispatch.dispatcher
 
 # Log errors.
-#django.dispatch.dispatcher.connect(
-#   log_exception, django.core.signals.got_request_exception)
+#django.dispatch.Signal.connect(
+#   django.core.signals.got_request_exception, log_exception)
+
+
 
 # Unregister the rollback event handler.
-django.dispatch.dispatcher.disconnect(
-    django.db._rollback_on_exception,
-    django.core.signals.got_request_exception)
+django.dispatch.Signal.disconnect(
+    django.core.signals.got_request_exception,
+    django.db._rollback_on_exception)
 
 def main():
   # Create a Django application for WSGI.
