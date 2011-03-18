@@ -1,0 +1,87 @@
+@import url('start/jquery-ui-1.8.10.custom.css');
+
+.ui-widget {
+ font-size: 12px;
+}
+
+body,
+
+html {
+ margin:0;
+ padding:0;
+ color:#000;
+}
+
+#wrap {
+ width:750px;
+ margin:0 auto;
+}
+
+#header {
+ height: 100px;
+ margin-top: 10px;
+ padding:5px 10px;
+ background:#eeeee0;
+}
+
+#nav {
+ float: left;
+ overflow: hidden;
+ padding: 0px 0px;
+ position: relative; padding: .2em;
+ zoom: 1;
+ margin-bottom: 0px;
+}
+
+#nav ul {
+ margin:0;
+ padding:0;
+ overflow: hidden;
+ list-style: none;
+ float: left; 
+ position: relative; 
+ top: 1px; 
+ margin: 0 .2em 1px 0;
+ border-bottom: 0 !important;
+ padding: 0; 
+ white-space: nowrap; 
+}
+
+#nav li {
+ float: left;
+ height: 50px;
+ width: 120px;
+ background: #bbb;
+ position: relative; 
+ top: 1px; 
+ margin: 0 .2em 1px 0;
+ border-bottom: 0 !important;
+ padding: 0; 
+ white-space: nowrap; 
+}
+
+#nav li a:link, #navigation li a:visited {
+ text-decoration: none;
+ cursor: pointer;
+ display: block;
+ height: 50px;
+ color: #fff;
+ line-height: 50px;
+ padding: 0 9px 0 9px;
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: 15px;
+ font-weight: bold;
+ text-align:center; 
+}
+
+#nav li a:hover {
+ background: #999;
+ color: #000;
+ border: 1px dotted #3A5896;
+}
+
+#nav li a.selected {
+ background: #7f46d7;
+ color: #fff;
+}
+

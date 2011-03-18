@@ -1,0 +1,107 @@
+
+
+#options {
+ height:42px;
+ margin-top:10px;
+ padding:5px 10px;
+ background:#eeeee0;
+}
+
+#dateres {
+ float:left;
+ width:200px;
+ height:42px;
+}
+
+#day {
+ float:left;
+ text-align:center;
+ padding:20px 0 20px 0;
+ width: 42px;
+ background-size:100%;
+}
+
+#datetxt {
+ margin-left:10px;
+ display:block;
+ float:left;
+ width:140px;
+ height:42px;
+ background-size:42px;
+ font-size:15px;
+}
+
+#carset {
+ float:left;
+ margin-left:5px;
+ height:42px;
+ width:210px;
+}
+
+#aval_sits {
+ float:left;
+ margin-left:3px;
+ margin-top:11px;
+ border:0;
+ font-weight:bold;
+ width:20px;
+ height:20px;
+}
+
+#sits {
+ float:left;
+ margin-top:11px;
+ height:20px;
+ width:20px;
+}
+
+#car {
+ float:left;
+ margin-left:3px;
+ width:42px;
+ height:42px;
+}
+
+#carslide {
+ margin-top:15px;
+ float:left;
+ margin-left: 10px;
+ width:50px; 
+}
+
+#lift {
+ margin-left: 10px;
+ float:left;
+ width:42px;
+ height:42px;
+}
+
+#left, #right {
+ margin-left:25px;
+ width:42px;
+ height:42px; 
+}
+
+#directions{
+ display:block;
+ margin:0px;
+ height:400px;
+ background:#eeeee0;
+}
+
+#maps {
+ float:left;
+ margin-top:40px;
+ margin-left:100px
+}
+
+#address {
+ font-size: 10px;
+ width: 190px;
+ height: 30px
+}
+
+#map_canvas {
+ width: 240px;
+ height: 240px;
+}

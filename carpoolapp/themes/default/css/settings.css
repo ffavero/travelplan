@@ -1,0 +1,37 @@
+
+
+#settings {
+ padding:10px;
+ width:450px;
+ height:350px;
+}
+
+label, .slider {
+ float:left;
+ margin-top:10px;
+ width:250px;
+}
+
+select, input, button {
+ float:left;
+ margin-top:10px;
+ width:100px;
+}
+
+#label_usual_search, #id_usual_search {
+ margin-top:30px;
+}
+
+#id_result_treshold, #id_range_time {
+ border:0; 
+ font-weight:bold;
+ width: 30px;
+}
+
+#slider_result_treshold {
+ width: 200px;
+}
+
+#savesettings{
+ margin:20px
+}

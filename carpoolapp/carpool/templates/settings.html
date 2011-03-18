@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+ {% block extahead %}
+  <link type="text/css" rel="stylesheet" href="/themes/default/css/settings.css" />
+  <script type="text/javascript" src="/js/settings.js"></script>
+  <script type="text/javascript">
+   history.navigationMode = 'compatible';
+   doAfter = function(time, f) {
+     setTimeout(f, time);
+   };
+   $(document).ready(function() {
+    $('body').css('display', 'none');
+    doAfter(50,function () {
+     loadBaseText();
+     initSettings();
+    });
+    $('body').fadeIn(600);
+   });
+  </script>
+ {% endblock %}
+
+ {% block title %}
+  Settings
+ {% endblock %}
+
+ {% block nav-settings %}
+  <a id="nav-settings" class="selected" href="/{{userid}}/settings/"></a>
+ {% endblock%}
+
+
+{% block contents %}
+ <form action="." method="post">{% csrf_token %}
+
+ <div id="settings">
+   <h3><a href="#" id="settings1"></a></h3>
+  <div class="fieldWrapper">
+   {{ userform.contactpref.errors }}
+   <label for="id_contactpref" id="label_contactpref"></label>
+   {{ userform.contactpref }}
+   <div id="slider_contactpref"></div>
+ 
+   {{ userform.suppl_contact.errors }}
+   <label for="id_suppl_contact" id="label_suppl_contact"></label>
+   {{ userform.suppl_contact }}
+ <!-- </div>
+ <h3><a href="#" id="settings2"></a></h3>
+  <div class="fieldWrapper"> -->
+   {{ userform.usual_search.errors }}
+   <label for="id_usual_search" id="label_usual_search"></label>
+   {{ userform.usual_search }}
+   <div id="slider_usual_search"></div>
+
+   {{ userform.aval_sits.errors }}
+   <label for="id_aval_sits" id="label_aval_sits"></label>
+   {{ userform.aval_sits}}
+   <div id="slider_aval_sits" class='slider'></div>
+  </div>
+ <h3><a href="#" id="settings3"></a></h3>
+  <div class="fieldWrapper">
+   {{ userform.range_time.errors }}
+   <label for="id_range_time" id="label_range_time"></label>
+   {{ userform.range_time }}
+   <div id="slider_range_time" class='slider'></div>
+   
+   {{ userform.range_time_sense.errors }}
+   <label for="id_range_time_sense" id="label_range_time_sense"></label>
+   {{ userform.range_time_sense }}
+ 
+   {{ userform.result_treshold.errors }}
+   <label for="id_result_treshold" id="label_result_treshold"></label>
+   {{ userform.result_treshold }}
+   <div id="slider_result_treshold" class='slider'></div>
+  </div>
+ <h3><a href="#" id="settings4"></a></h3>
+  <div class="fieldWrapper">
+   <h1>{{expiring}}</h1>
+   <button type='button' id="pay" onclick="window.location.replace('/{{userid}}/pay/')"></button>
+  </div>
+
+ </div> <!-- settings -->
+ <button type="submit" name="setuser" value="" id="savesettings" />
+ </button>
+
+{% endblock %}

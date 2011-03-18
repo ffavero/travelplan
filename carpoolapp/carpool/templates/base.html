@@ -1,0 +1,45 @@
+<html>
+ <head>
+
+  <script type="text/javascript" src="/js/lib/jquery-1.5.1.min.js"></script>
+  <script type="text/javascript" src="/js/lib/jquery-ui-1.8.10.custom.min.js"></script>
+  <script type="text/javascript" src="/js/base.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="/themes/default/css/base.css" />
+ {% block extahead %}
+
+ {% endblock %}
+
+  <title>
+  {% block title %}
+   Page title
+  {% endblock %}
+  </title>
+
+ </head>
+ <body onunload="" >
+  <div id="wrap">
+   <div id="header">
+    <div id="titlehead">
+     Title Of The App :)
+    </div><!-- titlehead -->
+   {% block nav %}
+    <div id="nav">
+     <ul>
+      <li>{% block nav-apps %}<a id="nav-apps" href="/{{userid}}/"></a>{% endblock %}</li>
+      <li>{% block nav-travels %}<a id="nav-travels" href="/{{userid}}/travels/"></a>{%endblock %}</li>
+      <li>{% block nav-settings %}<a id="nav-settings" href="/{{userid}}/settings/"></a>{% endblock%}</li>
+     </ul>
+    </div> <!-- nav -->
+   {% endblock %}
+      
+   </div> <!-- header -->
+   <div class="contents">
+  {% block contents %}
+    asdf
+  {% endblock %}
+   </div>
+  </div> <!-- wrap -->
+ </body>
+</html>
+
