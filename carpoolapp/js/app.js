@@ -33,16 +33,10 @@ function dateTimeSection() {
  
  $('#dateres').hover(
   function() {
-   $('#dateres').css(
-    {
-     'background' : "url(\'"+themedir+"buttonBlue.png\') no-repeat",
-   });
+   $(this).addClass('ui-corner-all ui-state-hover');
   },
   function() {
-   $('#dateres').css(
-    {
-     'background' : "",   
-   });   
+   $(this).removeClass('ui-corner-all ui-state-hover');
   }
  );
 

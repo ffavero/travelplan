@@ -1,7 +1,6 @@
 
-
 #options {
- height:42px;
+ height:35px;
  margin-top:10px;
  padding:5px 10px;
  background:#eeeee0;
@@ -9,15 +8,15 @@
 
 #dateres {
  float:left;
- width:200px;
- height:42px;
+ min-width:150px;
+ height:35px;
 }
 
 #day {
  float:left;
  text-align:center;
- padding:20px 0 20px 0;
- width: 42px;
+ padding:12px 0 12px 0;
+ width: 35px;
  background-size:100%;
 }
 
@@ -25,8 +24,8 @@
  margin-left:10px;
  display:block;
  float:left;
- width:140px;
- height:42px;
+ min-width:100px;
+ height:35px;
  background-size:42px;
  font-size:15px;
 }
@@ -34,7 +33,7 @@
 #carset {
  float:left;
  margin-left:5px;
- height:42px;
+ height:35px;
  width:210px;
 }
 
@@ -58,8 +57,8 @@
 #car {
  float:left;
  margin-left:3px;
- width:42px;
- height:42px;
+ width:35px;
+ height:35px;
 }
 
 #carslide {
@@ -72,14 +71,14 @@
 #lift {
  margin-left: 10px;
  float:left;
- width:42px;
- height:42px;
+ width:35px;
+ height:35px;
 }
 
 #left, #right {
  margin-left:25px;
- width:42px;
- height:42px; 
+ width:35px;
+ height:35px; 
 }
 
 #directions{

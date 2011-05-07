@@ -1,4 +1,4 @@
-@import url('start/jquery-ui-1.8.10.custom.css');
+@import url('base-theme/jquery-ui-1.8.12.custom.css');
 
 .ui-widget {
  font-size: 12px;
